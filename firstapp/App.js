@@ -7,7 +7,10 @@ import {
   View,
   TextInput,
   Dimensions,
+  FlatList,
+  SafeAreaView,
 } from "react-native";
+
 export default function App() {
   const [inputText, setInputText] = useState("");
   const [taskList, setTaskList] = useState([]);
@@ -15,8 +18,12 @@ export default function App() {
     setInputText(text);
   };
   const setTask = () => {
-    setTaskList((currenttaskList) => [...currenttaskList, inputText]);
+    setTaskList((currenttaskList) => [
+      ...currenttaskList,
+      { taskName: inputText, id: Math.random() },
+    ]);
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.TitleText}>ToDo</Text>
@@ -30,17 +37,28 @@ export default function App() {
       </View>
       <View style={styles.taskListStyle}>
         <Text>Task List</Text>
-        <View>
-          {taskList.map((task) => (
-            <Text key={task}>{task}</Text>
-          ))}
-        </View>
+        <FlatList
+          data={taskList}
+          renderItem={(task) => {
+            return (
+              <View>
+                <Text>{task.item.taskName}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={(item) => {
+            return item.id;
+          }}
+        />
       </View>
       <StatusBar style="auto" />
     </View>
   );
 }
 const styles = StyleSheet.create({
+  listContainer: {
+    flex: 1,
+  },
   taskListStyle: {
     padding: 10,
     width: Dimensions.get("window").width,
