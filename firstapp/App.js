@@ -10,6 +10,7 @@ import {
   FlatList,
   SafeAreaView,
 } from "react-native";
+import TaskItem from "./components/TaskItem";
 
 export default function App() {
   const [inputText, setInputText] = useState("");
@@ -36,15 +37,11 @@ export default function App() {
         <Button onPress={setTask} title="Click" />
       </View>
       <View style={styles.taskListStyle}>
-        <Text>Task List</Text>
+        <Text style={{ fontSize: 30 }}>Task List</Text>
         <FlatList
           data={taskList}
           renderItem={(task) => {
-            return (
-              <View>
-                <Text>{task.item.taskName}</Text>
-              </View>
-            );
+            return <TaskItem text={task.item.taskName} />;
           }}
           keyExtractor={(item) => {
             return item.id;
