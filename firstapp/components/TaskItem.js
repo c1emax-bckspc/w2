@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const TaskItem = ({ text }) => {
+const TaskItem = (props) => {
   return (
-    <View style={styles.taskStyle}>
-      <Text style={{ color: "white", fontSize: 30 }}>{text}</Text>
-    </View>
+    <Pressable onPress={props.delete.bind(this, props.id)}>
+      <View style={styles.taskStyle}>
+        <Text style={{ color: "white", fontSize: 30 }}>{props.text}</Text>
+      </View>
+    </Pressable>
   );
 };
 

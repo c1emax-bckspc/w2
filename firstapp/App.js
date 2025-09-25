@@ -3,27 +3,47 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Dimensions, FlatList } from "react-native";
 import TaskItem from "./components/TaskItem";
 import TaskInput from "./components/TaskInput";
+import { Button } from "react-native-web";
 
 export default function App() {
   const [taskList, setTaskList] = useState([]);
-
+  const [stateModal, setStateModal] = useState(false);
   const addTaskList = (inputText) => {
     setTaskList((currenttaskList) => [
       ...currenttaskList,
       { taskName: inputText, id: Math.random() },
     ]);
+    setStateModal(false);
   };
-
+  const DeleteTask = (id) => {
+    console.log;
+    setTaskList((currenttaskList) => {
+      return currenttaskList.filter((task) => task.id != id);
+    });
+  };
+  const openModal = () => {
+    setStateModal(true);
+  };
+  const closeModal = () => {
+    setStateModal(false);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.TitleText}>ToDo</Text>
-      <TaskInput add={addTaskList} />
+      <Button onPress={openModal} title="ADD TASK" />
+      <TaskInput on={stateModal} close={closeModal} add={addTaskList} />
       <View style={styles.taskListStyle}>
         <Text style={{ fontSize: 30 }}>Task List</Text>
         <FlatList
           data={taskList}
           renderItem={(task) => {
-            return <TaskItem text={task.item.taskName} />;
+            return (
+              <TaskItem
+                delete={DeleteTask}
+                text={task.item.taskName}
+                id={task.item.id}
+              />
+            );
           }}
           keyExtractor={(item) => {
             return item.id;

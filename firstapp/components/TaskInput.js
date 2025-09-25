@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Modal, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 
 const TaskInput = (props) => {
@@ -8,16 +8,21 @@ const TaskInput = (props) => {
   };
   const setTask = () => {
     props.add(inputText);
+    setInputText("");
   };
   return (
-    <View style={{ flexDirection: "row", gap: 5 }}>
-      <TextInput
-        style={{ borderWidth: 1, borderStyle: "solid", width: 200 }}
-        placeholder="Insert Task"
-        onChangeText={handleInputText}
-      />
-      <Button onPress={setTask} title="Click" />
-    </View>
+    <Modal style={{ marginTop: 50 }} visible={props.on} animationType="slide">
+      <View style={{ flexDirection: "row", gap: 5 }}>
+        <TextInput
+          style={{ borderWidth: 1, borderStyle: "solid", width: 200 }}
+          placeholder="Insert Task"
+          onChangeText={handleInputText}
+          value={inputText}
+        />
+        <Button onPress={setTask} title="Click" />
+        <Button onPress={props.close} title="Cancel" />
+      </View>
+    </Modal>
   );
 };
 
