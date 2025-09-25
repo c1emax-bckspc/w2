@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "start",
-    marginTop: 50,
+    marginTop: 100,
     gap: 10,
   },
   TitleText: {

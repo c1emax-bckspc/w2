@@ -11,7 +11,7 @@ const TaskInput = (props) => {
     setInputText("");
   };
   return (
-    <Modal style={{ marginTop: 50 }} visible={props.on} animationType="slide">
+    <Modal visible={props.on} animationType="slide">
       <View style={{ flexDirection: "row", gap: 5 }}>
         <TextInput
           style={{ borderWidth: 1, borderStyle: "solid", width: 200 }}
