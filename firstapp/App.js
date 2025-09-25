@@ -1,24 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import {
-  StyleSheet,
-  Button,
-  Text,
-  View,
-  TextInput,
-  Dimensions,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, Text, View, Dimensions, FlatList } from "react-native";
 import TaskItem from "./components/TaskItem";
+import TaskInput from "./components/TaskInput";
 
 export default function App() {
-  const [inputText, setInputText] = useState("");
   const [taskList, setTaskList] = useState([]);
-  const handleInputText = (text) => {
-    setInputText(text);
-  };
-  const setTask = () => {
+
+  const addTaskList = (inputText) => {
     setTaskList((currenttaskList) => [
       ...currenttaskList,
       { taskName: inputText, id: Math.random() },
@@ -28,14 +17,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.TitleText}>ToDo</Text>
-      <View style={{ flexDirection: "row", gap: 5 }}>
-        <TextInput
-          style={{ borderWidth: 1, borderStyle: "solid", width: 200 }}
-          placeholder="Insert Task"
-          onChangeText={handleInputText}
-        />
-        <Button onPress={setTask} title="Click" />
-      </View>
+      <TaskInput add={addTaskList} />
       <View style={styles.taskListStyle}>
         <Text style={{ fontSize: 30 }}>Task List</Text>
         <FlatList
