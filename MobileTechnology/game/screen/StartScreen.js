@@ -1,14 +1,33 @@
-import { StyleSheet, Text, TextInput, View, Pressable } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Pressable,
+  Alert,
+} from "react-native";
+import React, { useState } from "react";
 import PrimaryButton from "../component/PrimaryButton";
 
 const StartScreen = () => {
+  const [enteredNumber, setEnteredNumber] = useState("");
+  const numberinputHandler = (enteredText) => {
+    setEnteredNumber(enteredText);
+  };
+  const numberConfirm = () => {
+    Alert.alert("Number orson bn");
+  };
   return (
     <View style={styles.container}>
-      <TextInput maxLength={2} keyboardType="number-pad" style={styles.input} />
+      <TextInput
+        onChangeText={numberinputHandler}
+        maxLength={2}
+        keyboardType="number-pad"
+        style={styles.input}
+      />
       <View style={styles.buttonContainer}>
         <PrimaryButton>Reset</PrimaryButton>
-        <PrimaryButton>Confirm</PrimaryButton>
+        <PrimaryButton onPress={numberConfirm}>Confirm</PrimaryButton>
       </View>
     </View>
   );
