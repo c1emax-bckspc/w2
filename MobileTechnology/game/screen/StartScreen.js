@@ -17,16 +17,20 @@ const StartScreen = () => {
   const numberConfirm = () => {
     Alert.alert("Number orson bn");
   };
+  const numberReset = () => {
+    setEnteredNumber("");
+  };
   return (
     <View style={styles.container}>
       <TextInput
+        value={enteredNumber}
         onChangeText={numberinputHandler}
         maxLength={2}
         keyboardType="number-pad"
         style={styles.input}
       />
       <View style={styles.buttonContainer}>
-        <PrimaryButton>Reset</PrimaryButton>
+        <PrimaryButton onPress={numberReset}>Reset</PrimaryButton>
         <PrimaryButton onPress={numberConfirm}>Confirm</PrimaryButton>
       </View>
     </View>
