@@ -5,7 +5,7 @@ import PrimaryButton from "../component/PrimaryButton";
 const StartScreen = () => {
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} />
+      <TextInput maxLength={2} keyboardType="number-pad" style={styles.input} />
       <View style={styles.buttonContainer}>
         <PrimaryButton>Reset</PrimaryButton>
         <PrimaryButton>Confirm</PrimaryButton>
