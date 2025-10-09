@@ -3,7 +3,7 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Dimensions, FlatList } from "react-native";
 import TaskItem from "./components/TaskItem";
 import TaskInput from "./components/TaskInput";
-import { Button } from "react-native-web";
+import { Button, SafeAreaView } from "react-native-web";
 
 export default function App() {
   const [taskList, setTaskList] = useState([]);
@@ -28,7 +28,7 @@ export default function App() {
     setStateModal(false);
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.TitleText}>ToDo</Text>
       <Button onPress={openModal} title="ADD TASK" />
       <TaskInput on={stateModal} close={closeModal} add={addTaskList} />
@@ -51,7 +51,7 @@ export default function App() {
         />
       </View>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({

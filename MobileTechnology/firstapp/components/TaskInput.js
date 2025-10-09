@@ -1,4 +1,12 @@
-import { Button, Modal, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Button,
+  Modal,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 
 const TaskInput = (props) => {
@@ -7,8 +15,10 @@ const TaskInput = (props) => {
     setInputText(text);
   };
   const setTask = () => {
-    props.add(inputText);
-    setInputText("");
+    if (inputText !== "") {
+      props.add(inputText);
+      setInputText("");
+    } else Alert.alert("Please enter task");
   };
   return (
     <Modal visible={props.on} animationType="slide">
@@ -19,7 +29,7 @@ const TaskInput = (props) => {
           onChangeText={handleInputText}
           value={inputText}
         />
-        <Button onPress={setTask} title="Click" />
+        <Button onPress={setTask} title="ADD" />
         <Button onPress={props.close} title="Cancel" />
       </View>
     </Modal>
