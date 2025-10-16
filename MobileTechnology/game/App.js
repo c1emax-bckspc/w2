@@ -18,7 +18,7 @@ export default function App() {
   };
   let screen = <StartScreen check={changeScreen} />;
   if (checkEnteredNumber) {
-    screen = <GameScreen />;
+    screen = <GameScreen enteredNumber={checkEnteredNumber} />;
   }
   return (
     <LinearGradient
