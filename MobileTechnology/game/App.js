@@ -11,14 +11,39 @@ import { LinearGradient } from "expo-linear-gradient";
 import BGImage from "./assets/background.png";
 import GameScreen from "./screen/GameScreen";
 import { useState } from "react";
+import GameOverScreen from "./screen/GameOverScreen";
 export default function App() {
   const [checkEnteredNumber, setCheckEnteredNumber] = useState();
+  const [gameOver, setGameOver] = useState(false);
+  const [resetState, setResetState] = useState(false);
   const changeScreen = (number) => {
     setCheckEnteredNumber(number);
+    setResetState(false);
+    console.log(checkEnteredNumber);
   };
   let screen = <StartScreen check={changeScreen} />;
+
+  const checkGameOver = () => {
+    setGameOver(true);
+  };
+  const gameReset = () => {
+    setResetState(true);
+    setGameOver(false);
+    console.log("reset", resetState);
+  };
   if (checkEnteredNumber) {
-    screen = <GameScreen enteredNumber={checkEnteredNumber} />;
+    screen = (
+      <GameScreen
+        enteredNumber={checkEnteredNumber}
+        checkGameOver={checkGameOver}
+      />
+    );
+  }
+  if (gameOver) {
+    screen = <GameOverScreen resetGame={gameReset} />;
+  }
+  if (resetState) {
+    screen = <StartScreen check={changeScreen} />;
   }
   return (
     <LinearGradient

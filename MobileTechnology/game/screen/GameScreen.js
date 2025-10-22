@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import Title from "../component/Title";
 import color from "../constant/color";
 import PrimaryButton from "../component/PrimaryButton";
-const GameScreen = ({ enteredNumber }) => {
+const GameScreen = ({ enteredNumber, checkGameOver }) => {
   const Intnumber = parseInt(enteredNumber);
   // enteredNumber 55 taasan 7s baga 7-99 92 7-999
-  const [ami, setAmi] = useState(5);
+  const [ami, setAmi] = useState(1);
   const randomNumber = (max, min) => {
     let number = Math.floor(Math.random() * (max - min) + min);
     return number;
@@ -17,12 +17,12 @@ const GameScreen = ({ enteredNumber }) => {
       Alert.alert("Анхаар", "Зөв байна", [{ text: "Cancel" }]);
       setGuesNumber(randomNumber(Intnumber, guesNumber));
     } else if (Intnumber == guesNumber) {
-      Alert.alert("Анхаар", "Хожлоо", [{ text: "Cancel" }]);
+      checkGameOver();
     } else {
       if (ami > 0) {
         setAmi(ami - 1);
         Alert.alert("Анхаар", "Буруу байна", [{ text: "Cancel" }]);
-      } else Alert.alert("Анхаар", "Хожигдлоо", [{ text: "Cancel" }]);
+      } else checkGameOver();
     }
   };
   const taahHIGH = () => {
@@ -30,24 +30,24 @@ const GameScreen = ({ enteredNumber }) => {
       Alert.alert("Анхаар", "Зөв байна", [{ text: "Cancel" }]);
       setGuesNumber(randomNumber(guesNumber, Intnumber));
     } else if (Intnumber == guesNumber) {
-      Alert.alert("Анхаар", "Хожлоо", [{ text: "Cancel" }]);
+      checkGameOver();
     } else {
       if (ami > 0) {
         setAmi(ami - 1);
         Alert.alert("Анхаар", "Буруу байна", [{ text: "Cancel" }]);
-      } else Alert.alert("Анхаар", "Хожигдлоо", [{ text: "Cancel" }]);
+      } else checkGameOver();
     }
   };
-  console.log(typeof Intnumber);
-  console.log(Intnumber);
+
   return (
     <View style={styles.container}>
       <Title>GameScreen</Title>
       <View style={styles.numberContainer}>
         <Text style={styles.numberStyle}>{guesNumber}</Text>
-        <Text>{Intnumber}</Text>
+        {/* <Text>{Intnumber}</Text> */}
       </View>
-      <View>
+      <View style={{ flexDirection: "row" }}>
+        <Text style={styles.textStyle}>Live:</Text>
         <Text style={styles.textStyle}>{ami}</Text>
       </View>
       <View>
