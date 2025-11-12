@@ -8,6 +8,8 @@ const GameOverScreen = ({ resetGame }) => {
     <View style={styles.container}>
       <Title>Game Over</Title>
       <PrimaryButton onPress={resetGame}>Reset</PrimaryButton>
+      <Title> ТА Хожлоо</Title>
+      <Title> ТА Хожигдлоо</Title>
     </View>
   );
 };
