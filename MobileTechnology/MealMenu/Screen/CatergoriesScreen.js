@@ -3,12 +3,16 @@ import React from "react";
 import { CATEGORIES } from "../data/mealdata";
 import CategoryGridTitle from "../components/CategoryGridTitle";
 
-const CatergoriesScreen = () => {
+const CatergoriesScreen = ({ navigation }) => {
+  const onPress = () => {
+    navigation.navigate("MealsOverview");
+  };
   const renderCategoryItem = (itemData) => {
     return (
       <CategoryGridTitle
         title={itemData.item.title}
         color={itemData.item.color}
+        onPress={onPress}
       />
     );
   };
