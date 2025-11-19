@@ -4,10 +4,10 @@ import { CATEGORIES } from "../data/mealdata";
 import CategoryGridTitle from "../components/CategoryGridTitle";
 
 const CatergoriesScreen = ({ navigation }) => {
-  const onPress = () => {
-    navigation.navigate("MealsOverview");
-  };
   const renderCategoryItem = (itemData) => {
+    const onPress = () => {
+      navigation.navigate("MealsOverview", { categoryId: itemData.item.id });
+    };
     return (
       <CategoryGridTitle
         title={itemData.item.title}
@@ -22,7 +22,8 @@ const CatergoriesScreen = ({ navigation }) => {
         data={CATEGORIES}
         keyExtractor={(item) => item.id}
         renderItem={renderCategoryItem}
-        // numColumns={2}
+        numColumns={2}
+        // columnWrapperStyle={styles.columnWrapper}
       />
     </View>
   );
@@ -34,4 +35,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  // columnWrapper: {
+  //   justifyContent: "space-between",
+  // },
 });
