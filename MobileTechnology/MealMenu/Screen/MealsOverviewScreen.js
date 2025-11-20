@@ -3,7 +3,7 @@ import React from "react";
 import { MEALS } from "../data/mealdata";
 import MealItem from "../components/MealItem";
 
-const MealsOverviewScreen = ({ route }) => {
+const MealsOverviewScreen = ({ route, navigation }) => {
   const catId = route.params.categoryId;
   const displayMeals = MEALS.filter((mealItem) => {
     return mealItem.categoryIds.indexOf(catId) >= 0;
@@ -11,6 +11,7 @@ const MealsOverviewScreen = ({ route }) => {
   const renderMealItem = (itemData) => {
     return (
       <MealItem
+        MealId={itemData.item.id}
         title={itemData.item.title}
         img={itemData.item.imageUrl}
         ingredients={itemData.item.ingredients}
@@ -22,11 +23,12 @@ const MealsOverviewScreen = ({ route }) => {
         isVegan={itemData.item.isVegan}
         isVegetarian={itemData.item.isVegetarian}
         isLactoseFree={itemData.item.isLactoseFree}
+        navigation={navigation}
       />
     );
   };
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={displayMeals}
         keyExtractor={(item) => item.id}
@@ -38,4 +40,10 @@ const MealsOverviewScreen = ({ route }) => {
 
 export default MealsOverviewScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: "#351401",
+  },
+});
