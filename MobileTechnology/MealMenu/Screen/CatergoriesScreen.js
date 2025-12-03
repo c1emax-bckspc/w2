@@ -34,6 +34,7 @@ export default CatergoriesScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#3f2f25",
   },
   // columnWrapper: {
   //   justifyContent: "space-between",

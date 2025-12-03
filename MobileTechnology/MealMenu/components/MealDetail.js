@@ -4,10 +4,11 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { MEALS } from "../data/mealdata";
+import List from "./List";
 
 const MealDetail = ({ route }) => {
   const MealId = route.params.MealId;
@@ -17,9 +18,9 @@ const MealDetail = ({ route }) => {
   const renderIngredients = (itemData) => {
     <View> {itemData}</View>;
   };
-  console.log(data);
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Image source={{ uri: data[0].imageUrl }} style={styles.ImageStyle} />
       <View style={styles.innercontainer}>
         <Text style={styles.TitleStyle}>{data[0].title}</Text>
@@ -39,7 +40,6 @@ const MealDetail = ({ route }) => {
             style={{
               borderBottomWidth: 2,
               borderBottomColor: "white",
-
               padding: 10,
             }}
           >
@@ -51,23 +51,17 @@ const MealDetail = ({ route }) => {
                 fontWeight: "semibold",
               }}
             >
-              Ingredient
+              Ingredients
             </Text>
           </View>
-          <View style={{ gap: 10, width: "100%" }}>
-            {data[0].ingredients.map((item, index) => (
-              <View style={{ backgroundColor: "white", padding: 5 }}>
-                <Text style={{ textAlign: "center" }}>{item}</Text>
-              </View>
-            ))}
-          </View>
+
+          <List data={data[0].ingredients} />
         </View>
         <View style={{ width: "80%", marginHorizontal: 50 }}>
           <View
             style={{
               borderBottomWidth: 2,
               borderBottomColor: "white",
-
               padding: 10,
             }}
           >
@@ -82,16 +76,28 @@ const MealDetail = ({ route }) => {
               Steps
             </Text>
           </View>
-          <View style={{ gap: 10, width: "100%" }}>
-            {data[0].steps.map((item, index) => (
-              <View style={{ backgroundColor: "white", padding: 5 }}>
-                <Text style={{ textAlign: "center" }}>{item}</Text>
-              </View>
-            ))}
-          </View>
+
+          <List data={data[0].steps} />
+          {/* <FlatList
+              data={data[0].steps}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                <View style={{ gap: 10, width: "100%" }}>
+                  <View
+                    style={{
+                      backgroundColor: "white",
+                      padding: 5,
+                      marginBottom: 10,
+                    }}
+                  >
+                    <Text style={{ textAlign: "center" }}>{item}</Text>
+                  </View>
+                </View>
+              )}
+            /> */}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -103,8 +109,8 @@ const styles = StyleSheet.create({
     // backgroundColor: "orange",
     marginBottom: 30,
     backgroundColor: "white",
-    borderRadius: 5,
-    backgroundColor: "#351401",
+    // borderRadius: 5,
+    backgroundColor: "#3f2f25",
   },
   ImageStyle: {
     width: "100%",
@@ -131,5 +137,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "semibold",
     color: "white",
+  },
+  ListContainer: {
+    backgroundColor: "orange",
   },
 });
