@@ -56,8 +56,7 @@ const MealDetail = ({ route }) => {
           </View>
 
           <List data={data[0].ingredients} />
-        </View>
-        <View style={{ width: "80%", marginHorizontal: 50 }}>
+
           <View
             style={{
               borderBottomWidth: 2,
@@ -77,24 +76,9 @@ const MealDetail = ({ route }) => {
             </Text>
           </View>
 
-          <List data={data[0].steps} />
-          {/* <FlatList
-              data={data[0].steps}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <View style={{ gap: 10, width: "100%" }}>
-                  <View
-                    style={{
-                      backgroundColor: "white",
-                      padding: 5,
-                      marginBottom: 10,
-                    }}
-                  >
-                    <Text style={{ textAlign: "center" }}>{item}</Text>
-                  </View>
-                </View>
-              )}
-            /> */}
+          <View style={{ flex: 1 }}>
+            <List data={data[0].steps} />
+          </View>
         </View>
       </View>
     </View>
