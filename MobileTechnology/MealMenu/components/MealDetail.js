@@ -20,7 +20,7 @@ const MealDetail = ({ route }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Image source={{ uri: data[0].imageUrl }} style={styles.ImageStyle} />
       <View style={styles.innercontainer}>
         <Text style={styles.TitleStyle}>{data[0].title}</Text>
@@ -81,7 +81,7 @@ const MealDetail = ({ route }) => {
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
