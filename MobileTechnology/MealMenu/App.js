@@ -7,19 +7,22 @@ import { NavigationContainer } from "@react-navigation/native";
 import CatergoriesScreen from "./Screen/CatergoriesScreen";
 import MealsOverviewScreen from "./Screen/MealsOverviewScreen";
 import MealDetail from "./components/MealDetail";
-
+import Login from "./Screen/Login";
+import SignUp from "./Screen/SignUp";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="MealsCategories"
+        initialRouteName="Login"
         screenOptions={{
           headerStyle: { backgroundColor: "#351401" },
           headerTintColor: "white",
         }}
       >
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
         <Stack.Screen name="MealsCategories" component={CatergoriesScreen} />
         <Stack.Screen name="MealDetail" component={MealDetail} />
