@@ -1,10 +1,19 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import React, { useState } from "react";
-import { signpInFunction } from "../firebaseConfig";
+import React, { useEffect, useState } from "react";
+import { getCategories, signpInFunction } from "../firebaseConfig";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    async function loadData() {
+      const data = await getCategories();
+      setCategories(data);
+    }
+    loadData();
+  }, []);
   const toSignUp = () => {
     navigation.navigate("SignUp");
   };
@@ -18,6 +27,9 @@ const Login = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
+      <Text style={styles.logText}>
+        {categories.length > 0 ? categories[0].categoryName : "Loading..."}
+      </Text>
       <View style={styles.innerContainer}>
         <View style={styles.rowStyle}>
           <TextInput

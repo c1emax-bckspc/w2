@@ -7,19 +7,21 @@ import {
 // Optionally import the services that you want to use
 
 // import {...} from 'firebase/database';
-// import {...} from 'firebase/firestore';
+
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
 // import {...} from 'firebase/functions';
 // import {...} from 'firebase/storage';
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyAmRAMgJZmcmOP-t_3MttZZ9pREHaqmdcw",
-  authDomain: "test3-96eed.firebaseapp.com",
-  projectId: "test3-96eed",
-  storageBucket: "test3-96eed.firebasestorage.app",
-  messagingSenderId: "668421217732",
-  appId: "1:668421217732:web:53e3c92c4686272c7e1891",
-  measurementId: "G-S8EV5KR5ZZ",
+  apiKey: "AIzaSyBDwWijgsrZh36pYEofGkzKdYiBErHxN0w",
+  authDomain: "test3-faea7.firebaseapp.com",
+  projectId: "test3-faea7",
+  storageBucket: "test3-faea7.firebasestorage.app",
+  messagingSenderId: "1028529129918",
+  appId: "1:1028529129918:web:565ccb6948c7f0285651ef",
+  measurementId: "G-NVTSWMH85K",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -52,6 +54,31 @@ export const signpInFunction = async (email, password) => {
     // ..
   }
 };
+const db = getFirestore(app);
+export const getCategories = async () => {
+  try {
+    const snapshot = await getDocs(collection(db, "CATEGORIES"));
+    const categories = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
+    console.log("CATEGORIES:", categories);
+    return categories;
+  } catch (error) {
+    console.log("Error getting categories:", error);
+  }
+};
+// getData("c1");
+// rules_version = '2';
+
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     match /{document=**} {
+//       allow read, write: if
+//           request.time < timestamp.date(2026, 1, 23);
+//     }
+//   }
+// }
 // For more information on how to access Firebase in your project,
 // see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase

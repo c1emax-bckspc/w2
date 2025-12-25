@@ -2,8 +2,10 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { CATEGORIES } from "../data/mealdata";
 import CategoryGridTitle from "../components/CategoryGridTitle";
+import { getData } from "../firebaseConfig";
 
 const CatergoriesScreen = ({ navigation }) => {
+  getData("c1");
   const renderCategoryItem = (itemData) => {
     const onPress = () => {
       navigation.navigate("MealsOverview", { categoryId: itemData.item.id });
