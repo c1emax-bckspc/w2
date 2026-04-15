@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
-import DestinationList from "../components/DestinationList";
+import DestinationList from "../components/Destination";
 import ServiceSection from "../components/ServiceSection";
 import Footer from "../components/Footer";
 

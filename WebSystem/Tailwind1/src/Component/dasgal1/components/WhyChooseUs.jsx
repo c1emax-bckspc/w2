@@ -1,5 +1,5 @@
 import React from "react";
-import { benefits } from "../data/data";
+import { chefInfo } from "../data/data2";
 
 const WhyChooseUs = () => {
     return (
@@ -11,16 +11,16 @@ const WhyChooseUs = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-6">
-                    {benefits.map((item, index) => (
+                    
                         <div
-                            key={index}
+                            
                             className="flex-1 bg-indigo-50 rounded-2xl p-6 text-center"
                         >
-                            <div className="text-5xl mb-4">{item.icon}</div>
-                            <h3 className="text-2xl font-semibold mb-3">{item.title}</h3>
-                            <p className="text-gray-600">{item.description}</p>
+                            <div className="text-5xl mb-4">{chefInfo.title}</div>
+                            <h3 className="text-2xl font-semibold mb-3">{chefInfo.description}</h3>
+                            <p className="text-gray-600">{chefInfo.image}</p>
                         </div>
-                    ))}
+                    
                 </div>
             </div>
         </div>

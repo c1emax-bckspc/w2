@@ -33,18 +33,8 @@ export const courses = [
 export const benefits = [
     {
         icon: "📚",
-        title: "Easy Lessons",
-        description: "Simple and clear lessons for students who are just starting.",
-    },
-    {
-        icon: "👩‍🏫",
-        title: "Friendly Teachers",
-        description: "Supportive teachers who explain step by step.",
-    },
-    {
-        icon: "💻",
-        title: "Practice Projects",
-        description: "Students build real small projects after each lesson.",
+        title: "Our Special Chef",
+        description: "Our chef does smt ig",
     },
 ];
 

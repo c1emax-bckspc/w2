@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import { navLinks } from "../data/data";
+import { navLinks } from "../data/data2";
+
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -8,7 +9,7 @@ const Navbar = () => {
     return (
         <div className="w-full bg-indigo-100 shadow-md">
             <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-                <div className="text-2xl font-bold text-indigo-700">EduSmart</div>
+                <div className="text-2xl font-bold text-indigo-700">FoodHouse</div>
 
                 <div className="hidden md:flex gap-6">
                     {navLinks.map((link, index) => (
